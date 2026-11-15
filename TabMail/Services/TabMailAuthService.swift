@@ -14,10 +14,10 @@ enum TabMailProvider: String {
 
 @MainActor
 final class TabMailAuthService: NSObject {
-    private static let supabaseURL = "https://auth.tabmail.ai"
+    private static let supabaseURL = PeopleMailMode.serviceURL("https://auth.tabmail.ai")
     private static let supabaseAnonKey = "sb_publishable_1mtT87g-94P0yxFgM19Itw_P3ih9PUD"
-    private static let callbackURL = "https://tabmail.ai/auth/ios-callback"
-    private static let billingURL = "https://billing.tabmail.ai"
+    private static let callbackURL = PeopleMailMode.serviceURL("https://tabmail.ai/auth/ios-callback")
+    private static let billingURL = PeopleMailMode.serviceURL("https://billing.tabmail.ai")
     private var currentSession: ASWebAuthenticationSession?
 
     #if DEBUG
@@ -42,6 +42,7 @@ final class TabMailAuthService: NSObject {
     }
 
     nonisolated static func getSession(sessionStore: TabMailSessionStore = .shared) -> TabMailSession? {
+        guard !PeopleMailMode.isStandalone else { return nil }
         guard let record = sessionStore.loadActiveSession() else { return nil }
         return try? JSONDecoder().decode(TabMailSession.self, from: record.data)
     }

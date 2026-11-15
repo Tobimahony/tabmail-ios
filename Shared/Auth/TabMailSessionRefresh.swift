@@ -29,7 +29,7 @@ enum TabMailSessionRefresh {
         let completed = try await store.refreshCapturedSession(record) { data in
             let captured = try JSONDecoder().decode(TabMailSession.self, from: data)
             let publicKey = "sb_publishable_1mtT87g-94P0yxFgM19Itw_P3ih9PUD"
-            var request = URLRequest(url: URL(string: "https://auth.tabmail.ai/auth/v1/token?grant_type=refresh_token")!)
+            var request = URLRequest(url: URL(string: PeopleMailMode.serviceURL("https://auth.tabmail.ai/auth/v1/token?grant_type=refresh_token"))!)
             request.httpMethod = "POST"
             request.timeoutInterval = 10
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")

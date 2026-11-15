@@ -441,8 +441,8 @@ struct PlanPickerView: View {
     /// JWS format: header.payload.signature — decode payload (base64url) and read "environment".
     /// Sandbox → dev webhook, Production → prod webhook.
     private nonisolated static func webhookURL(forJWS jws: String) -> URL {
-        let devURL = URL(string: "https://apple-webhook-dev.tabmail.ai")!
-        let prodURL = URL(string: "https://apple-webhook.tabmail.ai")!
+        let devURL = URL(string: PeopleMailMode.serviceURL("https://apple-webhook-dev.tabmail.ai"))!
+        let prodURL = URL(string: PeopleMailMode.serviceURL("https://apple-webhook.tabmail.ai"))!
 
         let parts = jws.split(separator: ".")
         guard parts.count == 3 else { return BackendConfig.appleWebhookBaseURL }

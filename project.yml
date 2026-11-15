@@ -18,6 +18,7 @@ configFiles:
 settings:
   base:
     SWIFT_VERSION: "6.0"
+    SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) PEOPLE_MAIL_LOCAL"
     # DEVELOPMENT_TEAM is sourced from Secrets.xcconfig (gitignored) by
     # Scripts/xcodegen.sh and expanded here at generation time, so the Apple
     # Developer Team ID stays out of the public repo. It MUST be referenced here
@@ -153,7 +154,7 @@ targets:
       # and are internal. In the NSE target they are compiled in directly and
       # the import must NOT appear. `NSEMessageMetadata` and `NSEConfig` name
       # none, and carry no import.
-      SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) TABMAIL_TESTS"
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) PEOPLE_MAIL_LOCAL TABMAIL_TESTS"
     dependencies:
       - target: TabMail
 

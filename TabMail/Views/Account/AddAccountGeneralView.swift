@@ -36,11 +36,13 @@ struct AddAccountGeneralView: View {
                     .foregroundStyle(.secondary)
 
                 VStack(spacing: 12) {
-                    providerButton(.gmail, label: "Gmail") {
-                        Image("GoogleLogo").renderingMode(.original).resizable().scaledToFit()
-                    }
-                    providerButton(.outlook, label: "Outlook") {
-                        Image("MicrosoftLogo").renderingMode(.original).resizable().scaledToFit()
+                    if !PeopleMailMode.isStandalone {
+                        providerButton(.gmail, label: "Gmail") {
+                            Image("GoogleLogo").renderingMode(.original).resizable().scaledToFit()
+                        }
+                        providerButton(.outlook, label: "Outlook") {
+                            Image("MicrosoftLogo").renderingMode(.original).resizable().scaledToFit()
+                        }
                     }
                     providerButton(.icloud, label: "iCloud") {
                         Image(systemName: "apple.logo")

@@ -10,7 +10,7 @@ enum PushConfig {
     /// so device registrations must be in the same KV that the prod webhook handler reads.
     /// The apnsSandbox flag handles APNs environment routing (sandbox vs production).
     /// Same rationale as CLAUDE.md rules #9 (one shared backend entitlement store) and #10 (single Stripe).
-    static let baseURL = "https://push.tabmail.ai"
+    static let baseURL = PeopleMailMode.serviceURL("https://push.tabmail.ai")
 
     /// Whether to use APNs sandbox or production — derived from the build's
     /// ACTUAL `aps-environment` entitlement (read once from

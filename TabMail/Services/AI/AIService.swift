@@ -41,7 +41,8 @@ actor AIService {
 
     /// Whether AI backend calls are disabled (privacy opt-out).
     var disableLLMCalls: Bool {
-        Self.optOutStore.bool(forKey: Self.optOutAllAIKey)
+        if PeopleMailMode.isStandalone { return true }
+        return Self.optOutStore.bool(forKey: Self.optOutAllAIKey)
     }
 
     /// Whether web search is enabled for the agent chat.

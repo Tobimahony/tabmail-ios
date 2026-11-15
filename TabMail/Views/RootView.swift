@@ -101,7 +101,26 @@ struct RootView: View {
         // The App Store's age answer outranks everything, demo and the
         // account-less mail client included: it is about the person using
         // this device, not about a TabMail account.
-        if appStoreAge.blocksApp {
+        if PeopleMailMode.isStandalone {
+            if !navigationStore.isInitialLoadComplete {
+                ProgressView("People Mail wird vorbereitet …")
+            } else if navigationStore.accounts.isEmpty {
+                NavigationStack {
+                    AddAccountGeneralView()
+                        .safeAreaInset(edge: .top) {
+                            Text("People Mail · IMAP-Test ohne TabMail-Anmeldung")
+                                .font(.footnote)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(.regularMaterial)
+                        }
+                }
+            } else if !isStartupComplete {
+                ProgressView("Mailkonto wird geladen …")
+            } else {
+                MailNavigationView(initialSelection: nil)
+            }
+        } else if appStoreAge.blocksApp {
             AppStoreAgeGateView(status: appStoreAge) {
                 await checkAppStoreAge()
             }
@@ -948,6 +967,7 @@ struct RootView: View {
     /// Ask the App Store for the person's age (`AppStoreAgeCheck`). A failed
     /// region lookup (`.notChecked`) keeps the previous answer.
     private func checkAppStoreAge() async {
+        guard !PeopleMailMode.isStandalone else { return }
         guard !ScreenshotMode.isActive, !isCheckingAppStoreAge else { return }
         isCheckingAppStoreAge = true
         defer { isCheckingAppStoreAge = false }

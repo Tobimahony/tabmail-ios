@@ -46,11 +46,11 @@ enum NSEState {
     }
 
     static func getBackendBaseURL() -> String {
-        suite.string(forKey: SharedNSEData.backendBaseURLKey) ?? "https://api.tabmail.ai"
+        suite.string(forKey: SharedNSEData.backendBaseURLKey) ?? PeopleMailMode.serviceURL("https://api.tabmail.ai")
     }
 
     static func getPushWorkerURL() -> String {
-        suite.string(forKey: SharedNSEData.pushWorkerURLKey) ?? "https://push.tabmail.ai"
+        suite.string(forKey: SharedNSEData.pushWorkerURLKey) ?? PeopleMailMode.serviceURL("https://push.tabmail.ai")
     }
 
     static func isIMAPPushEnabled() -> Bool {
@@ -134,7 +134,7 @@ enum NSEState {
 
     /// Sync server base URL for AI cache probe REST endpoint.
     static func getSyncBaseURL() -> String {
-        suite.string(forKey: SharedNSEData.syncBaseURLKey) ?? "https://sync.tabmail.ai"
+        suite.string(forKey: SharedNSEData.syncBaseURLKey) ?? PeopleMailMode.serviceURL("https://sync.tabmail.ai")
     }
 
     /// Privacy opt-out: skip all backend AI calls. Written by the main app's

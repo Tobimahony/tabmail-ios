@@ -32,40 +32,40 @@ enum BackendConfig {
 
     static var apiBaseURL: URL {
         useDevServers
-            ? URL(string: "https://dev.tabmail.ai")!
-            : URL(string: "https://api.tabmail.ai")!
+            ? URL(string: PeopleMailMode.serviceURL("https://dev.tabmail.ai"))!
+            : URL(string: PeopleMailMode.serviceURL("https://api.tabmail.ai"))!
     }
 
     static var syncBaseURL: String {
-        useDevServers ? "https://sync-dev.tabmail.ai" : "https://sync.tabmail.ai"
+        useDevServers ? PeopleMailMode.serviceURL("https://sync-dev.tabmail.ai") : PeopleMailMode.serviceURL("https://sync.tabmail.ai")
     }
 
     static var syncWebSocketURL: String {
-        useDevServers ? "wss://sync-dev.tabmail.ai/ws" : "wss://sync.tabmail.ai/ws"
+        useDevServers ? PeopleMailMode.serviceURL("wss://sync-dev.tabmail.ai/ws") : PeopleMailMode.serviceURL("wss://sync.tabmail.ai/ws")
     }
 
     static var templatesBaseURL: URL {
         useDevServers
-            ? URL(string: "https://templates-dev.tabmail.ai")!
-            : URL(string: "https://templates.tabmail.ai")!
+            ? URL(string: PeopleMailMode.serviceURL("https://templates-dev.tabmail.ai"))!
+            : URL(string: PeopleMailMode.serviceURL("https://templates.tabmail.ai"))!
     }
 
     static var billingBaseURL: URL {
         useDevServers
-            ? URL(string: "https://billing-dev.tabmail.ai")!
-            : URL(string: "https://billing.tabmail.ai")!
+            ? URL(string: PeopleMailMode.serviceURL("https://billing-dev.tabmail.ai"))!
+            : URL(string: PeopleMailMode.serviceURL("https://billing.tabmail.ai"))!
     }
 
     /// The forms worker's public, anonymous trial-feedback endpoint (`TrialFeedback`).
     static var trialFeedbackURL: URL {
         useDevServers
-            ? URL(string: "https://forms-dev.tabmail.ai/feedback/trial")!
-            : URL(string: "https://forms.tabmail.ai/feedback/trial")!
+            ? URL(string: PeopleMailMode.serviceURL("https://forms-dev.tabmail.ai/feedback/trial"))!
+            : URL(string: PeopleMailMode.serviceURL("https://forms.tabmail.ai/feedback/trial"))!
     }
 
     static var appleWebhookBaseURL: URL {
         useDevServers
-            ? URL(string: "https://apple-webhook-dev.tabmail.ai")!
-            : URL(string: "https://apple-webhook.tabmail.ai")!
+            ? URL(string: PeopleMailMode.serviceURL("https://apple-webhook-dev.tabmail.ai"))!
+            : URL(string: PeopleMailMode.serviceURL("https://apple-webhook.tabmail.ai"))!
     }
 }

@@ -8,13 +8,13 @@
 		<string>ai.tabmail.ai-processing</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>TabMail</string>
+	<string>People Mail Test</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleName</key>
-	<string>TabMail</string>
+	<string>People Mail Test</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

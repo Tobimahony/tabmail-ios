@@ -275,6 +275,7 @@ actor PushNotificationService {
     /// Silent push (content-available: 1) works without user permission,
     /// but we request alert+sound+badge for future visible notifications.
     func requestPermissionAndRegister() async {
+        guard !PeopleMailMode.isStandalone else { return }
         #if DEBUG
         // The unit-test host must not raise the system notification alert:
         // nothing answers it, and it keeps the host scene inactive for the
